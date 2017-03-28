@@ -2,37 +2,29 @@ const koa = require('koa')
 const app = module.exports = new koa();
 
 // look ma, error propagation!
-
 app.use(async(ctx, next) => {
     try {
-        await next();
+        await next()
     } catch (err) {
-        // some errors will have .status
-        // however this is not a guarantee
-        ctx.status = err.status || 500;
-        ctx.type = 'html';
-        ctx.body = '<p>Something <em>exploded</em>, please contact Maru.</p>';
-
-        // since we handled this manually we'll
-        // want to delegate to the regular app
-        // level error handling as well so that
-        // centralized still functions correctly.
-        ctx.app.emit('error', err, ctx);
+        ctx.status = err.status || 500
+        ctx.type = 'html'
+        ctx.body = '<p>error is ' + ctx.status + '</p>'
+            // 手动处理捕获错误，应该将错误委托给app
+            // 将事件'error'，注册到app上，当app监听到error事件，调用error事件，参数为err,ctx
+        ctx.app.emit('error', err, ctx)
     }
-});
-
-// response
+})
 
 app.use(async() => {
-    throw new Error('boom boom');
-});
+    throw new Error('boom boom')
+})
 
-// error handler
 app.on('error', (err) => {
-    if (process.env.NODE_ENV !== 'test') {
-        console.log('sent error %s to the cloud', err.message);
-        console.log(err);
+    if (process.evN.NODE_ENV !== 'test') {
+        console.log('error');
+        console.log(err)
     }
-});
+})
 
-if (!module.parent) app.listen(3000);
+// if (!module.parent) app.listen(3000);
+// console.log('3000')
