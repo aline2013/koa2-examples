@@ -20,11 +20,9 @@ app.use(async() => {
 })
 
 app.on('error', (err) => {
-    if (process.evN.NODE_ENV !== 'test') {
-        console.log('error');
-        console.log(err)
-    }
+    console.log('error');
+    console.log(err)
 })
 
-// if (!module.parent) app.listen(3000);
-// console.log('3000')
+if (!module.parent) app.listen(3000);
+console.log('3000')

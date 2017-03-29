@@ -4,7 +4,7 @@ const bodypraser = require('koa-bodyparser')
 
 const app = module.exports = new koa()
 
-// app.use(bodypraser({ 'jsonLimit': "1kb" }))
+app.use(bodypraser({ 'jsonLimit': "1kb" }))
 
 app.use(async(ctx, next) => {
     if (ctx.method !== 'POST') await next()
