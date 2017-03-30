@@ -1,3 +1,7 @@
+/*
+ * 没搞明白
+ * csrf是网络攻击方式，可以用token方法对应
+ */
 const koa = require('koa')
 const csrf = require('koa-csrf')
 const bodyparser = require('koa-bodyparser')

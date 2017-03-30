@@ -1,17 +1,16 @@
-const koa = require('koa');
-const views = require('koa-views');
+const koa = require('koa')
+    // 渲染
+const views = require('koa-views')
 const path = require('path')
-const app = module.exports = new koa();
+const app = module.exports = new koa()
 
-// setup views, appending .ejs
-// when no extname is given to render()
 
-app.use(views(path.join(__dirname, 'views'), {
+// 设置渲染文件的父文件夹，以及渲染方式是 'ejs',的文件是 .ejs后缀
+app.use(views(path.join(__dirname, 'test-file'), {
     extension: 'ejs'
 }))
 
-// dummy data
-
+// 创建数据
 const user = {
     name: {
         first: 'Tobi',
@@ -22,7 +21,6 @@ const user = {
 };
 
 // render
-
 app.use(async(ctx) => {
     await ctx.render('test', { user: user });
 });

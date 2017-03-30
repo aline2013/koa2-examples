@@ -12,10 +12,13 @@
     "koa-compose": "^3.2.1",
     "koa-csrf": "^3.0.5",
     "koa-logger": "^2.0.1",
+    "koa-multer": "^1.0.1",
     "koa-router": "^7.0.1",
     "koa-session": "^5.0.0",
+    "koa-static": "^3.0.0",
     "koa-views": "^6.0.1",
     "raw-body": "^2.2.0",
-    "streaming-json-stringify": "^3.1.0"
+    "streaming-json-stringify": "^3.1.0",
+    "swig": "^1.4.2"
   }
 }

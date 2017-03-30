@@ -3,7 +3,6 @@ const koa = require('koa')
 const app = module.exports = new koa()
 
 app.use(async(ctx, next) => {
-    // if has not next middleware,continue
     await next()
     try {
         const status = ctx.status || 404
@@ -11,6 +10,7 @@ app.use(async(ctx, next) => {
     } catch (err) {
         if (err.status !== 404) return
         ctx.status = err.status
+            // ctx.accepts() 设置ctx接收的参数类型
         switch (ctx.accepts('html', 'json')) {
             case 'html':
                 ctx.type = 'html'
@@ -29,10 +29,5 @@ app.use(async(ctx, next) => {
     }
 })
 
-// // has next middleware
-// app.use(async(ctx) => {
-//     ctx.body = '<h1>Hello world</h1>'
-// })
-
-// app.listen('3000')
+if (!module.parent) app.listen('3000')
 console.log('3000')

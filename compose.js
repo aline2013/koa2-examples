@@ -1,4 +1,5 @@
 const koa = require('koa')
+    // 同时注册多个中间件
 const compose = require('koa-compose')
 
 const app = module.exports = new koa()
@@ -7,6 +8,7 @@ async function responseTime(ctx, next) {
     const start = new Date()
     await next()
     const ms = new Date() - start
+        // 设服务器响应时间
     ctx.set('X-Response-Time', '${ms}ms')
 }
 

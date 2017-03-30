@@ -1,9 +1,10 @@
+// 选择地执行中间件
 const koa = require('koa')
 const logger = require('koa-logger')
 
 const app = module.exports = new koa()
 
-function selectAsset(mw) {
+const selectAsset = (mw) => {
     return async(ctx, next) => {
         if (/(\.js|\.css|\.ico)$/.test(ctx.path)) {
             await next()

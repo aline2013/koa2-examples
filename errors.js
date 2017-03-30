@@ -1,5 +1,8 @@
+/*
+ * 错误捕获处理
+ */
 const koa = require('koa')
-const app = module.exports = new koa();
+const app = module.exports = new koa()
 
 // look ma, error propagation!
 app.use(async(ctx, next) => {
